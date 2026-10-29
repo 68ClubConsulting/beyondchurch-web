@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frontline Men — Beyond Church</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo+Black&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --ink:        #0A0A0A;
+  --cream:      #F5EFE0;
+  --aged-cream: #EDE4D0;
+  --mid:        #6B6456;
+  --green:      #BCF910;
+  --white:      #FFFFFF;
+
+  --font-hero:  'Bebas Neue', sans-serif;
+  --font-bold:  'Archivo Black', sans-serif;
+  --font-body:  'Inter', sans-serif;
+
+  --max-w: 1100px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  background: var(--ink);
+  padding: 80px 40px 72px;
+  text-align: center;
+}
+.hero-eyebrow {
+  font-family: var(--font-bold);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(245,239,224,0.45);
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: var(--font-hero);
+  font-size: clamp(56px, 10vw, 110px);
+  line-height: 0.93;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin-bottom: 24px;
+}
+.hero-sub {
+  font-family: var(--font-bold);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245,239,224,0.55);
+  max-width: 560px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  font-family: var(--font-bold);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  border-radius: 2px;
+  border: none;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-green { background: var(--green); color: var(--ink); }
+.btn-outline {
+  background: transparent;
+  color: var(--cream);
+  border: 1.5px solid rgba(245,239,224,0.35);
+}
+.btn-outline:hover { border-color: var(--cream); }
+.btn-dark { background: var(--ink); color: var(--cream); }
+.hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* ============================================================
+   ABOUT SECTION
+   ============================================================ */
+.about {
+  padding: 80px 40px;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: start;
+}
+.eyebrow {
+  font-family: var(--font-bold);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 16px;
+  display: block;
+}
+.about h2 {
+  font-family: var(--font-hero);
+  font-size: clamp(42px, 5vw, 72px);
+  line-height: 0.93;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.about p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--mid);
+  margin-bottom: 16px;
+}
+.about p strong { color: var(--ink); }
+.about-cta { margin-top: 28px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+.latest-message { }
+.latest-message h3 {
+  font-family: var(--font-bold);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 16px;
+}
+.video-wrap {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--ink);
+  margin-bottom: 14px;
+}
+.video-wrap iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+.notes-link {
+  font-family: var(--font-bold);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  padding-bottom: 1px;
+  transition: opacity 0.2s;
+}
+.notes-link:hover { opacity: 0.6; }
+
+/* ============================================================
+   FISHING TRIP SECTION
+   ============================================================ */
+.fishing {
+  background: var(--ink);
+  padding: 0 0 80px;
+  overflow: hidden;
+}
+
+/* Banner */
+.fishing-banner {
+  background: linear-gradient(135deg, #0A2A14 0%, #051509 60%, #0A0A0A 100%);
+  padding: 64px 40px;
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid rgba(188,249,16,0.15);
+}
+.fishing-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(188,249,16,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.fishing-tag {
+  display: inline-block;
+  background: var(--green);
+  color: var(--ink);
+  font-family: var(--font-bold);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+.fishing-banner h2 {
+  font-family: var(--font-hero);
+  font-size: clamp(48px, 8vw, 104px);
+  line-height: 0.9;
+  color: var(--cream);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  margin-bottom: 4px;
+}
+.fishing-banner .fishing-sub {
+  font-family: var(--font-hero);
+  font-size: clamp(28px, 4vw, 52px);
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+.fishing-banner .fishing-date {
+  font-family: var(--font-bold);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(245,239,224,0.55);
+  margin-bottom: 32px;
+}
+.fishing-banner-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* Details grid */
+.fishing-details {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 64px 40px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+}
+.detail-card {
+  background: rgba(255,255,255,0.04);
+  padding: 36px 28px;
+  border: 1px solid rgba(245,239,224,0.08);
+}
+.detail-card-label {
+  font-family: var(--font-bold);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 14px;
+  display: block;
+}
+.detail-card h3 {
+  font-family: var(--font-hero);
+  font-size: 26px;
+  letter-spacing: 0.02em;
+  color: var(--cream);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.detail-card p {
+  font-size: 13px;
+  line-height: 1.75;
+  color: rgba(245,239,224,0.6);
+}
+
+/* Itinerary */
+.itinerary {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 56px 40px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+.itin-day {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(245,239,224,0.07);
+  padding: 28px 28px;
+  display: flex;
+  gap: 20px;
+}
+.itin-day-num {
+  font-family: var(--font-hero);
+  font-size: 40px;
+  color: rgba(245,239,224,0.12);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 48px;
+}
+.itin-day-info {}
+.itin-day-label {
+  font-family: var(--font-bold);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+.itin-day-title {
+  font-family: var(--font-bold);
+  font-size: 15px;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.itin-day p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(245,239,224,0.55);
+}
+
+/* What's included */
+.included {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 56px 40px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.included h3 {
+  font-family: var(--font-hero);
+  font-size: 42px;
+  color: var(--cream);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.included-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.included-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  color: rgba(245,239,224,0.7);
+  line-height: 1.5;
+}
+.included-list li::before {
+  content: '◆';
+  color: var(--green);
+  font-size: 8px;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+/* Cost card */
+.cost-card {
+  background: var(--green);
+  padding: 40px 36px;
+  border-radius: 4px;
+}
+.cost-card-label {
+  font-family: var(--font-bold);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(10,10,10,0.55);
+  margin-bottom: 8px;
+}
+.cost-card-amount {
+  font-family: var(--font-hero);
+  font-size: 72px;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.cost-card-per {
+  font-family: var(--font-bold);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(10,10,10,0.55);
+  margin-bottom: 24px;
+}
+.cost-steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+  border-top: 1.5px solid rgba(10,10,10,0.15);
+  padding-top: 20px;
+}
+.cost-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13px;
+  color: rgba(10,10,10,0.75);
+  line-height: 1.5;
+}
+.cost-step-num {
+  background: var(--ink);
+  color: var(--green);
+  font-family: var(--font-bold);
+  font-size: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.cost-card .btn-dark {
+  width: 100%;
+  justify-content: center;
+  font-size: 12px;
+}
+
+/* Before you go */
+.before-go {
+  max-width: var(--max-w);
+  margin: 56px auto 0;
+  padding: 40px;
+  background: rgba(245,239,224,0.04);
+  border: 1px solid rgba(245,239,224,0.08);
+  border-radius: 4px;
+}
+.before-go h3 {
+  font-family: var(--font-hero);
+  font-size: 36px;
+  color: var(--cream);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.before-go-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.before-go-item {}
+.before-go-item-label {
+  font-family: var(--font-bold);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+.before-go-item p {
+  font-size: 13px;
+  color: rgba(245,239,224,0.6);
+  line-height: 1.7;
+}
+
+/* space limited banner */
+.space-limited {
+  max-width: var(--max-w);
+  margin: 40px auto 0;
+  padding: 28px 40px;
+  background: rgba(188,249,16,0.08);
+  border: 1px solid rgba(188,249,16,0.25);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.space-limited p {
+  font-family: var(--font-bold);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.space-limited span {
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: rgba(245,239,224,0.55);
+  display: block;
+  margin-top: 4px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 860px) {
+  .about { grid-template-columns: 1fr; gap: 48px; }
+  .fishing-details { grid-template-columns: 1fr; }
+  .itinerary { grid-template-columns: 1fr; }
+  .included { grid-template-columns: 1fr; }
+  .before-go-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .hero, .about, .fishing-banner, .fishing-details,
+  .itinerary, .included, .before-go, .space-limited { padding-left: 20px; padding-right: 20px; }
+  .before-go-grid { grid-template-columns: 1fr; }
+  .space-limited { flex-direction: column; align-items: flex-start; }
+  .detail-card, .itin-day { padding: 24px 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <p class="hero-eyebrow">Beyond Church · Men's Ministry</p>
+  <h1>Frontline<br>Men</h1>
+  <p class="hero-sub">Men, it's time to occupy the Frontline — conquer, love, worship, and serve a King.</p>
+  <div class="hero-actions">
+    <a href="https://www.youtube.com/channel/UCgGiXVh4JZsI67Za4mYpO0Q" class="btn btn-outline">YouTube Channel</a>
+    <a href="#fishing-trip" class="btn btn-green">2027 Fishing Trip</a>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT + LATEST MESSAGE
+     ============================================================ -->
+<div class="about">
+  <div class="about-text">
+    <span class="eyebrow">Who We Are</span>
+    <h2>Frontline<br>is for Men</h2>
+    <p>
+      <strong>"This is a man after my own heart."</strong> God made this statement about a king, warrior, leader, worshiper, son, brother, husband, and father. God made this statement about David — a man who was led by and lived by his heart.
+    </p>
+    <p>
+      We must learn to live and lead <strong>boldly</strong> from our hearts and aggressively battle. Just as David, you have been created with great purpose. You were created to conquer, love, worship, and serve a King — and expand His kingdom.
+    </p>
+    <p>It's time for each man to live with a warrior's heart.</p>
+    <div class="about-cta">
+      <a href="#fishing-trip" class="btn btn-dark">2027 Fishing Trip ↓</a>
+    </div>
+  </div>
+
+  <div class="latest-message">
+    <h3>Latest Message</h3>
+    <div class="video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/gURy2gHPVN8?rel=0"
+        title="Latest Frontline Message"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <a class="notes-link"
+       href="https://drive.google.com/file/d/17vUcwr5mLcPylBcZ58hEZRXA9zqieY7a/view?usp=sharing"
+       target="_blank" rel="noopener">
+      View Message Notes →
+    </a>
+  </div>
+</div>
+
+<!-- ============================================================
+     FISHING TRIP
+     ============================================================ -->
+<section class="fishing" id="fishing-trip">
+
+  <!-- Banner -->
+  <div class="fishing-banner">
+    <span class="fishing-tag">Frontline · Upcoming Event</span>
+    <h2>The Ultimate<br>Canadian</h2>
+    <div class="fishing-sub">Fishing Adventure</div>
+    <div class="fishing-date">July 31 – August 7, 2027</div>
+    <div class="fishing-banner-actions">
+      <a href="https://donate.overflow.co/beyondchurch/cash/express?config=frontline-fishing-trip-2027"
+         target="_blank" rel="noopener"
+         class="btn btn-green">Reserve Your Spot</a>
+      <!-- Swap href below to your hosted PDF URL (Google Drive, Subsplash, etc.) -->
+      <a href="YOUR_PDF_LINK_HERE"
+         target="_blank" rel="noopener"
+         class="btn btn-outline">Download Brochure</a>
+    </div>
+  </div>
+
+  <!-- Space limited alert -->
+  <div class="space-limited" style="margin-top:40px; margin-left:auto; margin-right:auto; max-width:1100px; margin-left:40px; margin-right:40px;">
+    <div>
+      <p>Space is Limited
+        <span>Spots are filling up — secure yours today before it's full.</span>
+      </p>
+    </div>
+    <a href="https://donate.overflow.co/beyondchurch/cash/express?config=frontline-fishing-trip-2027"
+       target="_blank" rel="noopener"
+       class="btn btn-green" style="white-space:nowrap;">Reserve Now</a>
+  </div>
+
+  <!-- Detail cards -->
+  <div class="fishing-details">
+    <div class="detail-card">
+      <span class="detail-card-label">Location</span>
+      <h3>Canada</h3>
+      <p>A remote Canadian fishing destination — world-class walleye and northern pike waters far from the ordinary.</p>
+    </div>
+    <div class="detail-card">
+      <span class="detail-card-label">Dates</span>
+      <h3>July 31 –<br>Aug 7</h3>
+      <p>One full week with the guys. Leave the noise behind and get out on the water.</p>
+    </div>
+    <div class="detail-card">
+      <span class="detail-card-label">Ministry</span>
+      <h3>Frontline<br>Men</h3>
+      <p>This trip is for the men of Beyond Church. A week to build brotherhood, deepen faith, and make memories.</p>
+    </div>
+  </div>
+
+  <!-- Itinerary -->
+  <div class="itinerary">
+    <div class="itin-day">
+      <div class="itin-day-num">01</div>
+      <div class="itin-day-info">
+        <div class="itin-day-label">Saturday · July 31</div>
+        <div class="itin-day-title">Travel Day — Depart Together</div>
+        <p>We leave as a group. Hit the road or fly out — details shared at registration.</p>
+      </div>
+    </div>
+    <div class="itin-day">
+      <div class="itin-day-num">02</div>
+      <div class="itin-day-info">
+        <div class="itin-day-label">Sunday · August 1</div>
+        <div class="itin-day-title">Arrive at Camp — Get Settled</div>
+        <p>Check in, meet the guides, get oriented, and prepare your gear for the days ahead.</p>
+      </div>
+    </div>
+    <div class="itin-day">
+      <div class="itin-day-num">03</div>
+      <div class="itin-day-info">
+        <div class="itin-day-label">August 2 – 6</div>
+        <div class="itin-day-title">Five Full Days on the Water</div>
+        <p>Guided fishing each day — walleye, northern pike, and whatever else bites. Evenings around the fire with the guys.</p>
+      </div>
+    </div>
+    <div class="itin-day">
+      <div class="itin-day-num">04</div>
+      <div class="itin-day-info">
+        <div class="itin-day-label">Saturday · August 7</div>
+        <div class="itin-day-title">Return Home</div>
+        <p>Pack up, say goodbye to camp, and head home with stories to tell.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- What's included + Cost -->
+  <div class="included">
+    <div>
+      <h3>What's<br>Included</h3>
+      <ul class="included-list">
+        <li>Lodging at the fishing camp for the full week</li>
+        <li>All meals from Sunday arrival through Saturday departure</li>
+        <li>Professional fishing guides each day on the water</li>
+        <li>Boat and equipment access</li>
+        <li>Fishing licenses (Canadian)</li>
+        <li>Transportation within camp</li>
+        <li>Evening fellowship time with the group</li>
+      </ul>
+    </div>
+
+    <div class="cost-card">
+      <div class="cost-card-label">Trip Cost</div>
+      <div class="cost-card-amount">$1,500</div>
+      <div class="cost-card-per">per person</div>
+      <ul class="cost-steps">
+        <li>
+          <span class="cost-step-num">1</span>
+          <span><strong>Reserve your spot</strong> — click the button below to secure your place with a payment through Overflow.</span>
+        </li>
+        <li>
+          <span class="cost-step-num">2</span>
+          <span><strong>Full payment due</strong> before departure — balance details communicated after registration.</span>
+        </li>
+        <li>
+          <span class="cost-step-num">3</span>
+          <span><strong>Questions?</strong> Reach out to the Frontline team at <a href="mailto:info@beyondchurch.org" style="text-decoration:underline;">info@beyondchurch.org</a>.</span>
+        </li>
+      </ul>
+      <a href="https://donate.overflow.co/beyondchurch/cash/express?config=frontline-fishing-trip-2027"
+         target="_blank" rel="noopener"
+         class="btn btn-dark">Reserve My Spot →</a>
+    </div>
+  </div>
+
+  <!-- Before you go -->
+  <div class="before-go">
+    <h3>Before You Go</h3>
+    <div class="before-go-grid">
+      <div class="before-go-item">
+        <div class="before-go-item-label">Passport</div>
+        <p>Canada requires a valid US passport. Make sure yours is current — allow time for renewal if needed before July 2027.</p>
+      </div>
+      <div class="before-go-item">
+        <div class="before-go-item-label">What to Bring</div>
+        <p>Fishing gear, rain gear, layers, bug spray, and sunscreen. A full packing list will be sent after you register.</p>
+      </div>
+      <div class="before-go-item">
+        <div class="before-go-item-label">Travel to Departure</div>
+        <p>You're responsible for getting to the group departure point. Carpools will be coordinated — details shared closer to the trip.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beyond Church — Alma, Arkansas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   RESET
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: #0D0D0D;
+  color: #F0EBE0;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 68px;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease;
+}
+.nav.scrolled {
+  background: rgba(13,13,13,0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.nav-logo {
+  height: 36px;
+  width: auto;
+  filter: invert(1);
+  opacity: 0.92;
+}
+.nav-pill {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255,255,255,0.08);
+  border: 0.5px solid rgba(255,255,255,0.12);
+  border-radius: 100px;
+  padding: 5px 6px;
+}
+.nav-pill a {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(240,235,224,0.75);
+  padding: 6px 14px;
+  border-radius: 100px;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.nav-pill a:hover {
+  background: rgba(255,255,255,0.1);
+  color: #F0EBE0;
+}
+.nav-pill a.pill-give {
+  background: rgba(255,255,255,0.92);
+  color: #0D0D0D;
+  font-weight: 600;
+}
+.nav-pill a.pill-give:hover {
+  background: #fff;
+}
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  background: rgba(255,255,255,0.08);
+  border: 0.5px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: rgba(240,235,224,0.8);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+}
+.hero-video {
+  position: absolute;
+  /* Scale iframe to cover viewport like a video background */
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 177.78vh; /* 16:9 aspect ratio */
+  height: 56.25vw; /* 16:9 aspect ratio */
+  min-width: 100%;
+  min-height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13,13,13,0.3) 0%,
+    rgba(13,13,13,0.15) 50%,
+    rgba(13,13,13,0.7) 85%,
+    rgba(13,13,13,1) 100%
+  );
+  z-index: 1;
+}
+.hero-content {
+  position: absolute;
+  bottom: 80px;
+  left: 0; right: 0;
+  padding: 0 56px;
+  z-index: 2;
+}
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240,235,224,0.5);
+  margin-bottom: 18px;
+}
+.hero-headline {
+  font-size: clamp(42px, 6.5vw, 88px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #F0EBE0;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+.hero-headline em {
+  font-style: normal;
+  font-weight: 600;
+  color: #fff;
+}
+.hero-location {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: rgba(240,235,224,0.45);
+  text-transform: uppercase;
+  margin-bottom: 36px;
+}
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.95);
+  color: #0D0D0D;
+  border-radius: 100px;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-hero-primary:hover { background: #fff; transform: translateY(-1px); }
+.btn-hero-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+  color: rgba(240,235,224,0.8);
+  border: 0.5px solid rgba(240,235,224,0.3);
+  border-radius: 100px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-hero-ghost:hover { border-color: rgba(240,235,224,0.7); color: #F0EBE0; }
+
+/* ============================================================
+   PURPOSE / SCROLL REVEAL SECTION
+   ============================================================ */
+.purpose {
+  position: relative;
+  min-height: 120vh;
+  padding: 140px 56px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.purpose-text {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+}
+.purpose-pre {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(240,235,224,0.3);
+  margin-bottom: 40px;
+}
+.purpose-statement {
+  font-size: clamp(36px, 5.5vw, 72px);
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+}
+.purpose-word {
+  display: inline;
+  color: rgba(240,235,224,0.15);
+  transition: color 0.5s ease;
+}
+.purpose-word.lit {
+  color: rgba(240,235,224,0.95);
+}
+.purpose-accent {
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* Floating photos */
+.purpose-photos {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.purpose-photo {
+  position: absolute;
+  border-radius: 12px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(40px) rotate(var(--rot, 0deg));
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+}
+.purpose-photo.visible {
+  opacity: 1;
+  transform: translateY(0) rotate(var(--rot, 0deg));
+}
+.purpose-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+/* Photo positions */
+.photo-1 {
+  width: 240px; height: 300px;
+  right: 8%; top: 12%;
+  --rot: 2.5deg;
+  transition-delay: 0.1s;
+}
+.photo-2 {
+  width: 200px; height: 260px;
+  right: 18%; bottom: 12%;
+  --rot: -1.8deg;
+  transition-delay: 0.25s;
+}
+.photo-3 {
+  width: 180px; height: 220px;
+  right: 4%; bottom: 25%;
+  --rot: 1.2deg;
+  transition-delay: 0.4s;
+}
+
+/* ============================================================
+   SERVICE INFO BAR
+   ============================================================ */
+.service-bar {
+  padding: 0 56px 80px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.service-item {
+  flex: 1;
+  padding: 32px 0;
+  border-top: 0.5px solid rgba(240,235,224,0.1);
+}
+.service-item:not(:last-child) {
+  border-right: 0.5px solid rgba(240,235,224,0.08);
+  padding-right: 40px;
+  margin-right: 40px;
+}
+.service-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240,235,224,0.3);
+  margin-bottom: 8px;
+}
+.service-value {
+  font-size: 22px;
+  font-weight: 300;
+  color: rgba(240,235,224,0.9);
+  letter-spacing: -0.01em;
+}
+.service-value a {
+  color: rgba(240,235,224,0.9);
+  border-bottom: 0.5px solid rgba(240,235,224,0.2);
+  transition: border-color 0.2s;
+}
+.service-value a:hover { border-color: rgba(240,235,224,0.6); }
+
+/* ============================================================
+   LATEST SERMON
+   ============================================================ */
+.sermon {
+  padding: 0 56px 120px;
+}
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 0.5px solid rgba(240,235,224,0.08);
+}
+.section-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240,235,224,0.3);
+}
+.section-link {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(240,235,224,0.5);
+  letter-spacing: 0.04em;
+  border-bottom: 0.5px solid rgba(240,235,224,0.2);
+  transition: color 0.2s, border-color 0.2s;
+}
+.section-link:hover { color: rgba(240,235,224,0.9); border-color: rgba(240,235,224,0.5); }
+.sermon-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.sermon-video-wrap {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #1A1A1A;
+}
+.sermon-video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+.sermon-copy {}
+.sermon-copy h2 {
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: rgba(240,235,224,0.9);
+  margin-bottom: 16px;
+}
+.sermon-copy h2 em {
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(240,235,224,0.5);
+}
+.sermon-copy p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(240,235,224,0.45);
+  margin-bottom: 28px;
+}
+.sermon-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-sm-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 22px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.9);
+  color: #0D0D0D;
+  border-radius: 100px;
+  transition: background 0.2s;
+}
+.btn-sm-primary:hover { background: #fff; }
+.btn-sm-ghost {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 22px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: transparent;
+  color: rgba(240,235,224,0.6);
+  border: 0.5px solid rgba(240,235,224,0.2);
+  border-radius: 100px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-sm-ghost:hover { border-color: rgba(240,235,224,0.5); color: rgba(240,235,224,0.9); }
+
+/* ============================================================
+   MINISTRIES — STACKED CARDS
+   ============================================================ */
+.ministries {
+  padding: 0 56px 120px;
+}
+.ministries-intro {
+  margin-bottom: 48px;
+}
+.ministries-intro h2 {
+  font-size: clamp(28px, 4vw, 54px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: rgba(240,235,224,0.9);
+  line-height: 1.1;
+}
+.ministries-intro h2 em {
+  font-style: italic;
+  color: rgba(240,235,224,0.4);
+}
+
+.ministry-stack {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: -8px;
+  position: relative;
+}
+.ministry-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: #1A1A1A;
+  cursor: pointer;
+  transition: transform 0.35s ease, z-index 0s;
+  margin-left: -10px;
+}
+.ministry-card:first-child { margin-left: 0; }
+.ministry-card:nth-child(1) { transform: rotate(-2deg); z-index: 1; }
+.ministry-card:nth-child(2) { transform: rotate(-1deg); z-index: 2; }
+.ministry-card:nth-child(3) { transform: rotate(0deg); z-index: 3; }
+.ministry-card:nth-child(4) { transform: rotate(1deg); z-index: 2; }
+.ministry-card:nth-child(5) { transform: rotate(2deg); z-index: 1; }
+.ministry-card:hover {
+  transform: rotate(0deg) translateY(-16px) !important;
+  z-index: 10;
+}
+.ministry-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.4s ease;
+}
+.ministry-card:hover .ministry-card-bg { transform: scale(1.04); }
+.ministry-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0.1) 60%, transparent 100%);
+}
+.ministry-card-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 20px 16px;
+}
+.ministry-card-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.ministry-card-desc {
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s, transform 0.25s;
+}
+.ministry-card:hover .ministry-card-desc { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   EVENTS — STACKED CARDS
+   ============================================================ */
+.events {
+  padding: 0 56px 120px;
+}
+.events-intro {
+  margin-bottom: 48px;
+}
+.events-intro h2 {
+  font-size: clamp(28px, 4vw, 54px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: rgba(240,235,224,0.9);
+  line-height: 1.1;
+}
+.events-intro h2 em {
+  font-style: italic;
+  color: rgba(240,235,224,0.4);
+}
+
+.event-stack {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: 280px;
+}
+.event-card {
+  position: absolute;
+  width: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.event-card:hover { transform: translateY(-12px) rotate(0deg) !important; z-index: 10; }
+.event-card img {
+  width: 100%; height: 200px;
+  object-fit: cover;
+  display: block;
+}
+.event-card-info {
+  background: #1C1C1C;
+  padding: 12px 14px;
+  border-top: 0.5px solid rgba(240,235,224,0.06);
+}
+.event-card-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(240,235,224,0.85);
+  line-height: 1.3;
+}
+
+/* card fan layout */
+.event-card:nth-child(1) { transform: rotate(-8deg) translateX(-180px) translateY(10px); z-index: 1; }
+.event-card:nth-child(2) { transform: rotate(-4deg) translateX(-90px) translateY(4px); z-index: 2; }
+.event-card:nth-child(3) { transform: rotate(0deg); z-index: 3; }
+.event-card:nth-child(4) { transform: rotate(4deg) translateX(90px) translateY(4px); z-index: 2; }
+.event-card:nth-child(5) { transform: rotate(8deg) translateX(180px) translateY(10px); z-index: 1; }
+
+.events-cta {
+  text-align: center;
+  margin-top: 60px;
+}
+.events-cta p {
+  font-size: 13px;
+  color: rgba(240,235,224,0.35);
+  margin-bottom: 16px;
+}
+
+/* ============================================================
+   THE HILL STRIP
+   ============================================================ */
+.hill-strip {
+  margin: 0 56px 120px;
+  border-radius: 12px;
+  background: #151515;
+  border: 0.5px solid rgba(240,235,224,0.08);
+  padding: 48px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.hill-strip-text {}
+.hill-strip-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240,235,224,0.3);
+  margin-bottom: 10px;
+}
+.hill-strip-heading {
+  font-size: clamp(24px, 3vw, 40px);
+  font-weight: 300;
+  color: rgba(240,235,224,0.9);
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+.hill-strip-sub {
+  font-size: 13px;
+  color: rgba(240,235,224,0.4);
+  line-height: 1.7;
+  max-width: 460px;
+}
+.hill-strip-actions { display: flex; gap: 10px; flex-wrap: wrap; flex-shrink: 0; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  border-top: 0.5px solid rgba(240,235,224,0.08);
+  padding: 56px 56px 40px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 0.5px solid rgba(240,235,224,0.06);
+  margin-bottom: 32px;
+}
+.footer-brand-logo {
+  height: 28px;
+  width: auto;
+  filter: invert(1);
+  opacity: 0.55;
+  margin-bottom: 16px;
+}
+.footer-tagline {
+  font-size: 13px;
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(240,235,224,0.3);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.footer-address {
+  font-size: 12px;
+  color: rgba(240,235,224,0.25);
+  line-height: 1.8;
+}
+.footer-col-title {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240,235,224,0.25);
+  margin-bottom: 18px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul a {
+  font-size: 13px;
+  color: rgba(240,235,224,0.5);
+  transition: color 0.2s;
+}
+.footer-col ul a:hover { color: rgba(240,235,224,0.9); }
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-copy { font-size: 11px; color: rgba(240,235,224,0.2); }
+.footer-social { display: flex; gap: 20px; }
+.footer-social a {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(240,235,224,0.3);
+  transition: color 0.2s;
+}
+.footer-social a:hover { color: rgba(240,235,224,0.7); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .ministry-stack { grid-template-columns: repeat(3, 1fr); }
+  .ministry-card:nth-child(4), .ministry-card:nth-child(5) { display: none; }
+}
+@media (max-width: 860px) {
+  .nav { padding: 0 24px; }
+  .nav-pill { display: none; }
+  .nav-hamburger { display: flex; }
+  .hero-content, .purpose, .service-bar, .sermon, .ministries, .events, .footer { padding-left: 24px; padding-right: 24px; }
+  .hill-strip { margin-left: 24px; margin-right: 24px; padding: 32px 28px; flex-direction: column; align-items: flex-start; }
+  .sermon-grid { grid-template-columns: 1fr; }
+  .purpose { padding-top: 100px; padding-bottom: 80px; }
+  .purpose-photo { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer { padding: 40px 24px 28px; }
+  .ministry-stack { grid-template-columns: repeat(2, 1fr); }
+  .ministry-card:nth-child(5) { display: none; }
+  .ministry-card { margin-left: 0; }
+  .ministry-card:nth-child(1) { transform: rotate(-1deg); }
+  .ministry-card:nth-child(2) { transform: rotate(0.5deg); }
+  .ministry-card:nth-child(3) { transform: rotate(-0.5deg); }
+  .ministry-card:nth-child(4) { transform: rotate(1deg); }
+}
+@media (max-width: 600px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .ministry-stack { grid-template-columns: 1fr; }
+  .ministry-card { margin-left: 0; transform: rotate(0deg) !important; }
+  .event-stack { height: 360px; }
+  .event-card:nth-child(1) { transform: rotate(-6deg) translateX(-120px) translateY(8px); }
+  .event-card:nth-child(2) { transform: rotate(-3deg) translateX(-60px) translateY(4px); }
+  .event-card:nth-child(4) { transform: rotate(3deg) translateX(60px) translateY(4px); }
+  .event-card:nth-child(5) { transform: rotate(6deg) translateX(120px) translateY(8px); }
+  .hero-content { padding: 0 24px; bottom: 60px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .purpose-word { transition: none; }
+  .purpose-photo { transition: none; }
+  .ministry-card { transition: none; }
+  .event-card { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="main-nav">
+  <a href="/" aria-label="Beyond Church home">
+    <img class="nav-logo"
+         src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyMDQ4IDM3NSIgd2lkdGg9IjEyMDAiIGhlaWdodD0iMjIwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNDMsMTMpIiBkPSJtMCAwIDIyIDFoMTZsNTEgNiAyMCA0IDIwIDggNyA2IDQgOHY2bC02IDktOSA4LTIxIDEyLTYgNC0xMSA2LTIzIDEzLTIwIDEyLTEwIDktMSAzdjlsNyA4IDggNSAyNSAxMSAxOCAxMiA3IDggMyA4LTEgOS00IDgtNyA4LTEwIDYtOCAzLTE2IDUtMzQgOC0zIDEtMTkgMi0xMyAzLTMgMi01LTEtNTMgOC0xOSAzLTM1IDQtNSAxMi03IDktMiAxaC02bC0xLTcgNS0xMCAxLTMtNDAgNC01NSA2LTM4IDYtMjQgNi0zMiAxMGgtNXYtM2wzNi0xMiAyNy03IDMxLTUgNzItOCAzMy00IDUtOCAxMi0yMCAxMi0xOSA3LTExIDUtNyAzLTcgMTQtMTggMTAtMTQgMTItMTYgMTEtMTQgMTMtMTYgOS0xMyAxMS0xMyA2LTggOC0xMCA2LTcgNi04IDQtMiAyLTQgMTEtN2g3bDMgMnY1bC03IDUtMTIgNi0xMCAxMS04IDEwLTExIDEyLTkgMTEtNiA3LTE0IDIwLTkgOS0xMyAxOC0xNiAyMy0xNCAxOS05IDE0LTEyIDIxLTggMTYtNiAxMSAxNC0xIDYwLTkgNjMtMTEgMjUtNyAyMy04IDE4LTcgOC00IDUtNSA0LTUtMS02LTQtNi01LTUtOS02LTE5LTktMTUtNS0zLTItNy0yLTYtNS0yLTR2LTExbDctMTEgMTAtMTAgOC02IDMwLTE5IDExLTZoMnYtMmwxMi02IDEzLTcgOC01IDUtOXYtOGwtNS02LTM4LTExLTE3LTMtMjAtMi0xOC0yaC0zMWwtNTAgNC0zNiA3LTMwIDktMTIgNS0yNCAxNi0zIDRoLTRsLTIgNi02IDkgNSAxIDIgMy00IDRoLTEwbC03LTQtMS0ydi02bDgtMTEgNS00IDExLTcgMTYtMTAgMTgtNyAxMy01IDQwLTEwIDI4LTUgMzItM3oiIGZpbGw9IiMwMjAyMDIiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTEyOSwxMCkiIGQ9Im0wIDAgNiAyIDEgNC0zIDV2NWwtNiA3LTggMy03IDctNiA1LTEwIDEzLTE0IDIxLTEwIDE0LTEyIDE2LTE4IDI3LTQgOC0yIDgtNSA2LTQgMTMtMiA4djExbDQgNCA3LTEgMTAtMyAxMi03IDEyLTggMTgtMTMgMjAtMTUgNCAxdjNsLTI2IDIwLTMwIDIxLTE0IDgtOCAzaC0xMGwtNC01LTItNHYtMTFsMi0xNCA1LTE1IDMtOHYtNmwtMy0zLTIgNC0xNyAxNi0xMyAxMi01IDUtMTEgOC0xMyA4LTEwIDRoLTEwbC01LTV2LTlsNi0xMiA0LTUtMzIgMTYtMTUgNC02IDFoLTlsLTYtMy0zLTMtMS02IDQtMTV2LTdsLTQtMS0xMSA4LTkgOC0xMSA4LTE4IDE4LTMgMi01LTEtMS0xIDEtOSA4LTggNS05IDE0LTIxIDQtMTEtMS0zLTQtMi03LTFoLTE1bC0yMSAyLTIxIDNoLTZ2Mmw1IDIgNSA2djlsLTQgOC04IDgtMTcgMTItMTQgNy0xMyA1LTE2LTEtNi00LTItMyAxLTYgNS04IDYtNWgybDItNCAxOC0xMyAxMC03IDctNC0yMCAxLTQtMyAxLTUgMy0yIDE1IDFoMTRsOC0yIDMtMmgxOGwxMi0yIDE3LTFoMTRsMTIgMyA0IDMgMy0xMyA1LTQgNiAxIDEgNC02IDE4LTcgMTAtMTEgMTctNSA5IDctNyAxMS05IDExLTcgNi0yaDlsNCA0IDEgNi0xIDE0IDEgNSAxIDQgNiAxIDE3LTUgMTktOCAxMy03IDE5LTExIDEyLTEwIDEzLTggMTMtNiA2LTJoMTNsNiAzIDgtNyA4LTggNy04IDEzLTE0IDEwLTEzIDE0LTE3IDEwLTE0IDEzLTE2IDgtMTEgNC02em0tODMgMTA4bS0xIDEtMTEgMTItNCA0IDIgNWgybDYtMTAgNi05em0tMzMgOS0xMSA0LTE2IDgtOCA2LTkgOS0xNCAxNi00IDE1djVsNS0xIDE2LTkgMTEtOSA4LTcgMTEtOSAyMS0yMSAxLTMtNC00em0tMjQ2IDEyLTEzIDktMjIgMTQtOSA4LTUgNy0xIDcgNCAzaDdsMTUtNSAxNi05IDEwLTggOS0xMSAyLTUtMS01LTUtNHoiIGZpbGw9IiMwMjAyMDIiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTU3MywxNykiIGQ9Im0wIDAgNCA0LTEgNS00IDgtOSAxMC04IDktOSAxNC04IDEwLTggMTItMTIgMTYtMTQgMjAtMTAgMTUtOCAxMy0xMCAyNS0xIDMgNC0xIDEyLTkgMTktMTMgNS00IDE0LTkgOS02IDktMiA5IDEgNSA0LTEgNi0xMSAyNS0yIDkgMSAyIDUtMSAxNC03IDE1LTEwIDgtNyA4LTEwIDEtMTAgNS02IDQtMSAzIDMgMSA3LTMgNi02IDgtMTAgMTEtOCAxMi0zIDEwIDEzLTQgMTYtNyAyMC0xMSAxMC02IDE1LTEwIDIxLTEwIDQgMSAzIDItMSA0LTEyIDIxLTQgOXYzbDMgMWgxMmwyNS00IDEwLTE1IDktMTMgNy0xMSAzLTMtMi0zdi02bDUtNiAyLTFoOGwyIDYtNCA4LTUgNS04IDExLTggMTMgMy0yIDE2LTEyIDE2LTExIDE4LTExIDI0LTExIDE0LTMgNyAxIDMgM3Y5bC0zIDVoLTdsLTEtMXYtOWwtMTYgNC0xMSA0LTE4IDEwLTEzIDktMTMgMTAtMTEgMTEtOCA3LTEwIDEwLTYgMTAtNiA0LTQtMS0yLTIgMi0xMCAyLTQtMTkgNS0xMiAyaC0xMmwtMi0zIDEtNyA4LTE2IDQtOS0xNiA3LTE2IDktMTMgOC0xNCA4LTEwIDYtOSAzLTEyLTEtNS0zIDEtOSA0LTh2LTFsLTE1IDExLTE0IDhoLTEybC0yLTN2LTE0aDJsMi01IDktMjR2LTRsLTkgNC0yNSAxNC0xNCAxMS0xMyAxMS0xMiA3LTEyIDMtMi0yIDEtOSA2LTEzIDUtMTMgMjAtMzAgMTMtMTkgMTItMTYgNy0xMSAxMC0xNiA2LTEwIDExLTE2IDQtOCA4LTcgNS01eiIgZmlsbD0iIzAyMDIwMiIvPgo8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNDQ3LDE4KSIgZD0ibTAgMGgxNmwxMiAyIDEwIDUgNCA1IDMgMTB2NWwtMyAyLTMgOS01IDVoLTZsLTQtNSAyLTcgNC00IDEtM3YtN2wtMy01LTYtM2gtMTFsLTQtMWgtMTdsLTQxIDctMTIgMy0xMyAyLTI2IDExLTE3IDgtNDYgMjYtMTEgOC0xMyAxMC0xNSAxMy0xMiAxMS0xMSAxMi0xMyAxNy0xMSAxNS03IDE0LTMgOS0xIDE0IDIgOSA2IDkgNSA0djJoNmw0IDQgNSAyIDEgMSAxMSAyIDEwIDIgMTggMWgxOGwyMi0yaDlsMzItNyAyNy03IDQtMiAxNi00IDM2LTEyIDMwLTExIDEzLTUgMiA0LTIxIDktOCA0LTE2IDctMjIgOC0xOSA2LTM0IDktMTEgMy0zIDItMTQgMS0xNSAzLTE5IDItMzUgNS0zMC04aC0xM2wtNi00LTctOC05LTE3LTEtNC0xLTI0IDUtMTMgMTAtMjAgOS0xMiA3LTcgOC0xMCAyMS0yMSAxNC0xMSAxMC04IDE3LTEyIDE2LTEwIDEwLTcgMTQtNiAxNy04IDctMyAxOC03IDM4LTEyIDIyLTN6IiBmaWxsPSIjMDIwMjAyIi8+CjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU0MSwxMTkpIiBkPSJtMCAwaDhsNSAyIDMgM3Y3bC00IDgtMTAgNi0yOCAxNi0xMSA1LTEwIDItNS0xLTEtMyA0LTYgOS0xIDctMSAxNi03IDE0LTkgOC03IDEtNi0zLTItOSAyLTE5IDktMTIgOC0xMCA5LTggOC03IDEwLTIgNXY4bDggMyA5LTEgMTUtNCAxNi02IDI2LTEwIDM0LTE2IDgtNWgybDItNSAzLTYgOC0xMCA2LTRoNWwxIDUtNiA5LTggNy0yIDQtNSAyLTIgNC03IDE1IDEgMyA5LTEgMjgtMTMgMzItMTcgMTYtOCAyMi05aDExbDUgNS0xIDctNCAxMC00IDUtMiA2LTUgNS0xMiAxOS0yNiAzNi02IDctMTAgMTQtNSA1LTEwIDExLTEzIDE4LTggMTMtMTUgMzAtNCAxMy00IDEydjI0bC0yIDMtNi0ydi0xN2w0LTE4IDQtMTEgNi0xNiAxMi0yMiAxNS0yMiAxNC0xOSAxMS0xMyA2LTggMTItMTUgMjItMzMgNy0xMSA5LTE0LTEtMTItMTAgMS0yMCA5LTM0IDE4LTE4IDEwLTE5IDZoLTlsLTMtNHYtOGw0LTktMjMgMTItMjggMTMtMTkgOC0xNiA1LTE4IDRoLTdsLTYtMy00LTV2LTE1bDgtMTUgNy02IDgtNyA4LTYgMTgtMTIgOC00IDktM3oiIGZpbGw9IiMwMjAyMDIiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjAxOCwxOCkiIGQ9Im0wIDAgNSAxIDEgMS0xIDctMyA2LTkgMTEtNSA0LTEwIDE1LTEyIDE2LTcgMTEtMTEgMTQtNyAxMC0yNCAzNi00IDktOCAyMC0xIDMgNy00IDgtNiAxOS0xMyA4LTYgMTEtNyA4LTYgMTItMyA4IDEgNSA0LTEgNy0xMCAyMy0yIDZ2NWwzIDEgMTYtOCAxOC0xMiA3LTUgNCAxdjJsLTEyIDktMTcgMTMtMTIgNy00IDJoLTEybC0yLTN2LTEzbDUtNyA4LTIydi01bC0xNiA4LTE5IDExLTE2IDEzLTE0IDExLTEwIDUtMTAgMi0yLTMgMi05IDUtMTEgMi02IDMtOC0xMiA2LTI0IDktNTggMjEtNCAxaC0xMmwtOC00LTEtMnYtOWw0LTggMTAtMTEgMTktMTMgMjAtMTIgMTctOSA1LTMgNS0yIDEwLTEgNCA0IDEgNi01IDQtNS0xLTMtMS0xIDMtNi0xLTE4IDgtMTYgOC0xNCAxMC0xMiAxMS03IDgtMSA0IDIgMmg3bDIwLTQgMjEtOCA0MS0xMyAyMy0xMCA2LTQgNy0xMSAxNS0yMiAxMy0xOCAxMC0xNSAxMC0xNiA2LTEwIDEyLTE3IDItNiA4LTd6IiBmaWxsPSIjMDIwMjAyIi8+Cjwvc3ZnPgo="
+         alt="Beyond Church">
+  </a>
+  <div class="nav-pill">
+    <a href="/beyond-kids">Ministries</a>
+    <a href="/i-m-new">I'm New</a>
+    <a href="https://www.youtube.com/c/BeyondChurch">Watch</a>
+    <a href="/the-hill">The Hill</a>
+    <a href="https://donate.overflow.co/beyondchurch" class="pill-give">Give</a>
+  </div>
+  <div class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!--
+    Replace src with your video loop URL.
+    Replace poster with a still frame URL.
+  -->
+  <iframe class="hero-video"
+          src="https://www.youtube-nocookie.com/embed/RKSgdYDr9zY?autoplay=1&mute=1&loop=1&controls=0&playlist=RKSgdYDr9zY&disablekb=1&modestbranding=1&rel=0"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;">
+  </iframe>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Alma, Arkansas · Sundays at 10AM</p>
+    <h1 class="hero-headline">Preaching<br><em>Jesus.</em></h1>
+    <p class="hero-location">Everyone &middot; Everywhere &middot; Everyday</p>
+    <div class="hero-actions">
+      <a href="/i-m-new" class="btn-hero-primary">I'm New Here</a>
+      <a href="/connect" class="btn-hero-ghost">Get Connected</a>
+    </div>
+  </div>
+</section>
+
+<!-- PURPOSE SCROLL REVEAL -->
+<section class="purpose" id="purpose-section" aria-label="Our purpose">
+  <div class="purpose-text">
+    <p class="purpose-pre">Why we exist</p>
+    <div class="purpose-statement" id="purpose-statement">
+      <span class="purpose-word" data-group="0">Serving</span>
+      <span class="purpose-word" data-group="0"> our</span>
+      <span class="purpose-word" data-group="0"> generation</span>
+      <span class="purpose-word" data-group="1"> by</span>
+      <span class="purpose-word purpose-accent" data-group="1"> preaching</span>
+      <span class="purpose-word purpose-accent" data-group="1"> Jesus.</span>
+      <br>
+      <span class="purpose-word" data-group="2"> Everyone.</span>
+      <span class="purpose-word" data-group="3"> Everywhere.</span>
+      <span class="purpose-word" data-group="4"> Everyday.</span>
+    </div>
+  </div>
+
+  <!-- Floating photos — replace src with real photos from your Faves folder -->
+  <div class="purpose-photos">
+    <div class="purpose-photo photo-1" id="photo-1">
+      <img src="https://storage1.snappages.site/7Q8RJ5/assets/images/25508843_9504x6336_500.JPG"
+           alt="Beyond Church congregation"
+           style="width:240px;height:300px;object-fit:cover;">
+    </div>
+    <div class="purpose-photo photo-2" id="photo-2">
+      <img src="https://storage1.snappages.site/7Q8RJ5/assets/images/25509997_9504x6336_500.jpeg"
+           alt="Beyond Church worship"
+           style="width:200px;height:260px;object-fit:cover;">
+    </div>
+    <div class="purpose-photo photo-3" id="photo-3">
+      <img src="https://storage1.snappages.site/7Q8RJ5/assets/images/25508894_9504x6336_500.jpeg"
+           alt="Beyond Church community"
+           style="width:180px;height:220px;object-fit:cover;">
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE INFO -->
+<div class="service-bar">
+  <div class="service-item">
+    <div class="service-label">Sunday Service</div>
+    <div class="service-value">10:00 AM</div>
+  </div>
+  <div class="service-item">
+    <div class="service-label">Wednesday Night</div>
+    <div class="service-value">6:30 PM</div>
+  </div>
+  <div class="service-item">
+    <div class="service-label">Address</div>
+    <div class="service-value">4510 Hwy 71 N &middot; Alma, AR</div>
+  </div>
+  <div class="service-item">
+    <div class="service-label">Watch Live</div>
+    <div class="service-value">
+      <a href="https://www.youtube.com/c/BeyondChurch" target="_blank" rel="noopener">YouTube &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<!-- LATEST SERMON -->
+<section class="sermon">
+  <div class="section-header">
+    <span class="section-label">Latest Message</span>
+    <a href="https://www.youtube.com/c/BeyondChurch" class="section-link" target="_blank" rel="noopener">Full Archive &rarr;</a>
+  </div>
+  <div class="sermon-grid">
+    <div class="sermon-video-wrap">
+      <!-- Replace with latest sermon YouTube embed URL -->
+      <iframe
+        src="https://www.youtube.com/embed/rI-dujRBYE4"
+        title="Latest Beyond Church Sermon"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="sermon-copy">
+      <h2>Miss a<br><em>Sunday?</em></h2>
+      <p>Every message is available on YouTube. Catch up on the latest sermon or browse the full archive — anytime, anywhere.</p>
+      <div class="sermon-actions">
+        <a href="https://www.youtube.com/c/BeyondChurch" class="btn-sm-primary" target="_blank" rel="noopener">Watch Now</a>
+        <a href="https://www.youtube.com/c/BeyondChurch" class="btn-sm-ghost" target="_blank" rel="noopener">All Sermons</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MINISTRIES -->
+<section class="ministries">
+  <div class="section-header">
+    <span class="section-label">Ministries</span>
+    <a href="/ministries" class="section-link">See All &rarr;</a>
+  </div>
+  <div class="ministries-intro">
+    <h2>Find your<br><em>place here.</em></h2>
+  </div>
+  <div class="ministry-stack">
+    <a href="/beyond-kids" class="ministry-card">
+      <div class="ministry-card-bg" style="background-image:url('https://storage1.snappages.site/7Q8RJ5/assets/images/25508863_9504x6336_500.jpeg');background-size:cover;background-position:center;"></div>
+      <div class="ministry-card-overlay"></div>
+      <div class="ministry-card-content">
+        <div class="ministry-card-name">Beyond Kids</div>
+        <div class="ministry-card-desc">Age-appropriate, high-energy environments for children.</div>
+      </div>
+    </a>
+    <a href="/beyond-youth" class="ministry-card">
+      <div class="ministry-card-bg" style="background-image:url('https://storage1.snappages.site/7Q8RJ5/assets/images/25509987_9504x6336_500.jpeg');background-size:cover;background-position:center;"></div>
+      <div class="ministry-card-overlay"></div>
+      <div class="ministry-card-content">
+        <div class="ministry-card-name">Beyond Youth</div>
+        <div class="ministry-card-desc">Wednesday nights built for students to grow in faith.</div>
+      </div>
+    </a>
+    <a href="/young-adults" class="ministry-card">
+      <div class="ministry-card-bg" style="background-image:url('https://storage1.snappages.site/7Q8RJ5/assets/images/26205195_1920x1080_500.png');background-size:cover;background-position:center;"></div>
+      <div class="ministry-card-overlay"></div>
+      <div class="ministry-card-content">
+        <div class="ministry-card-name">Young Adults</div>
+        <div class="ministry-card-desc">Find Christ and community in your twenties and thirties.</div>
+      </div>
+    </a>
+    <a href="/frontline-men" class="ministry-card">
+      <div class="ministry-card-bg" style="background-image:url('https://storage1.snappages.site/7Q8RJ5/assets/images/19461042_2000x2000_500.png');background-size:cover;background-position:center;"></div>
+      <div class="ministry-card-overlay"></div>
+      <div class="ministry-card-content">
+        <div class="ministry-card-name">Frontline Men</div>
+        <div class="ministry-card-desc">Brotherhood, accountability, and purpose for men.</div>
+      </div>
+    </a>
+    <a href="/flourish-women" class="ministry-card">
+      <div class="ministry-card-bg" style="background-image:url('https://storage1.snappages.site/7Q8RJ5/assets/images/19461047_2000x2000_500.png');background-size:cover;background-position:center;"></div>
+      <div class="ministry-card-overlay"></div>
+      <div class="ministry-card-content">
+        <div class="ministry-card-name">Flourish Women</div>
+        <div class="ministry-card-desc">A community growing together in faith and friendship.</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events">
+  <div class="section-header">
+    <span class="section-label">What's Coming Up</span>
+    <a href="/upcoming-events" class="section-link">See All Events &rarr;</a>
+  </div>
+  <div class="events-intro">
+    <h2>Always something<br><em>happening.</em></h2>
+  </div>
+  <div class="event-stack">
+    <div class="event-card">
+      <img src="https://storage1.snappages.site/7Q8RJ5/assets/images/25508863_9504x6336_500.jpeg" alt="Starting Point" style="width:200px;height:200px;object-fit:cover;">
+      <div class="event-card-info"><div class="event-card-name">Starting Point</div></div>
+    </div>
+    <div class="event-card">
+      <img src="https://storage1.snappages.site/7Q8RJ5/assets/images/25509987_9504x6336_500.jpeg" alt="Small Groups" style="width:200px;height:200px;object-fit:cover;">
+      <div class="event-card-info"><div class="event-card-name">Small Groups</div></div>
+    </div>
+    <div class="event-card">
+      <img src="https://storage1.snappages.site/7Q8RJ5/assets/images/26367652_1920x1080_500.png" alt="Wednesday Night" style="width:200px;height:200px;object-fit:cover;">
+      <div class="event-card-info"><div class="event-card-name">Wednesday Night</div></div>
+    </div>
+    <div class="event-card">
+      <img src="https://storage1.snappages.site/7Q8RJ5/assets/images/25508843_9504x6336_500.JPG" alt="Water Baptism" style="width:200px;height:200px;object-fit:cover;">
+      <div class="event-card-info"><div class="event-card-name">Water Baptism</div></div>
+    </div>
+    <div class="event-card">
+      <img src="https://storage1.snappages.site/7Q8RJ5/assets/images/26205195_1920x1080_500.png" alt="The Hill" style="width:200px;height:200px;object-fit:cover;">
+      <div class="event-card-info"><div class="event-card-name">The Hill</div></div>
+    </div>
+  </div>
+  <div class="events-cta">
+    <p>See everything happening at Beyond Church</p>
+    <a href="/upcoming-events" class="btn-sm-primary">View All Events</a>
+  </div>
+</section>
+
+<!-- THE HILL STRIP -->
+<div class="hill-strip">
+  <div class="hill-strip-text">
+    <div class="hill-strip-label">Community Development</div>
+    <div class="hill-strip-heading">The Hill</div>
+    <div class="hill-strip-sub">A $1.2M vision for a playground, splash pad, trails, and courts — open to everyone in Alma.</div>
+  </div>
+  <div class="hill-strip-actions">
+    <a href="/the-hill" class="btn-sm-primary">Learn More</a>
+    <a href="https://donate.overflow.co/beyondchurch" class="btn-sm-ghost">Give Today</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <img class="footer-brand-logo"
+           src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyMDQ4IDM3NSIgd2lkdGg9IjEyMDAiIGhlaWdodD0iMjIwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNDMsMTMpIiBkPSJtMCAwIDIyIDFoMTZsNTEgNiAyMCA0IDIwIDggNyA2IDQgOHY2bC02IDktOSA4LTIxIDEyLTYgNC0xMSA2LTIzIDEzLTIwIDEyLTEwIDktMSAzdjlsNyA4IDggNSAyNSAxMSAxOCAxMiA3IDggMyA4LTEgOS00IDgtNyA4LTEwIDYtOCAzLTE2IDUtMzQgOC0zIDEtMTkgMi0xMyAzLTMgMi01LTEtNTMgOC0xOSAzLTM1IDQtNSAxMi03IDktMiAxaC02bC0xLTcgNS0xMCAxLTMtNDAgNC01NSA2LTM4IDYtMjQgNi0zMiAxMGgtNXYtM2wzNi0xMiAyNy03IDMxLTUgNzItOCAzMy00IDUtOCAxMi0yMCAxMi0xOSA3LTExIDUtNyAzLTcgMTQtMTggMTAtMTQgMTItMTYgMTEtMTQgMTMtMTYgOS0xMyAxMS0xMyA2LTggOC0xMCA2LTcgNi04IDQtMiAyLTQgMTEtN2g3bDMgMnY1bC03IDUtMTIgNi0xMCAxMS04IDEwLTExIDEyLTkgMTEtNiA3LTE0IDIwLTkgOS0xMyAxOC0xNiAyMy0xNCAxOS05IDE0LTEyIDIxLTggMTYtNiAxMSAxNC0xIDYwLTkgNjMtMTEgMjUtNyAyMy04IDE4LTcgOC00IDUtNSA0LTUtMS02LTQtNi01LTUtOS02LTE5LTktMTUtNS0zLTItNy0yLTYtNS0yLTR2LTExbDctMTEgMTAtMTAgOC02IDMwLTE5IDExLTZoMnYtMmwxMi02IDEzLTcgOC01IDUtOXYtOGwtNS02LTM4LTExLTE3LTMtMjAtMi0xOC0yaC0zMWwtNTAgNC0zNiA3LTMwIDktMTIgNS0yNCAxNi0zIDRoLTRsLTIgNi02IDkgNSAxIDIgMy00IDRoLTEwbC03LTQtMS0ydi02bDgtMTEgNS00IDExLTcgMTYtMTAgMTgtNyAxMy01IDQwLTEwIDI4LTUgMzItM3oiIGZpbGw9IiMwMjAyMDIiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTEyOSwxMCkiIGQ9Im0wIDAgNiAyIDEgNC0zIDV2NWwtNiA3LTggMy03IDctNiA1LTEwIDEzLTE0IDIxLTEwIDE0LTEyIDE2LTE4IDI3LTQgOC0yIDgtNSA2LTQgMTMtMiA4djExbDQgNCA3LTEgMTAtMyAxMi03IDEyLTggMTgtMTMgMjAtMTUgNCAxdjNsLTI2IDIwLTMwIDIxLTE0IDgtOCAzaC0xMGwtNC01LTItNHYtMTFsMi0xNCA1LTE1IDMtOHYtNmwtMy0zLTIgNC0xNyAxNi0xMyAxMi01IDUtMTEgOC0xMyA4LTEwIDRoLTEwbC01LTV2LTlsNi0xMiA0LTUtMzIgMTYtMTUgNC02IDFoLTlsLTYtMy0zLTMtMS02IDQtMTV2LTdsLTQtMS0xMSA4LTkgOC0xMSA4LTE4IDE4LTMgMi01LTEtMS0xIDEtOSA4LTggNS05IDE0LTIxIDQtMTEtMS0zLTQtMi03LTFoLTE1bC0yMSAyLTIxIDNoLTZ2Mmw1IDIgNSA2djlsLTQgOC04IDgtMTcgMTItMTQgNy0xMyA1LTE2LTEtNi00LTItMyAxLTYgNS04IDYtNWgybDItNCAxOC0xMyAxMC03IDctNC0yMCAxLTQtMyAxLTUgMy0yIDE1IDFoMTRsOC0yIDMtMmgxOGwxMi0yIDE3LTFoMTRsMTIgMyA0IDMgMy0xMyA1LTQgNiAxIDEgNC02IDE4LTcgMTAtMTEgMTctNSA5IDctNyAxMS05IDExLTcgNi0yaDlsNCA0IDEgNi0xIDE0IDEgNSAxIDQgNiAxIDE3LTUgMTktOCAxMy03IDE5LTExIDEyLTEwIDEzLTggMTMtNiA2LTJoMTNsNiAzIDgtNyA4LTggNy04IDEzLTE0IDEwLTEzIDE0LTE3IDEwLTE0IDEzLTE2IDgtMTEgNC02em0tODMgMTA4bS0xIDEtMTEgMTItNCA0IDIgNWgybDYtMTAgNi05em0tMzMgOS0xMSA0LTE2IDgtOCA2LTkgOS0xNCAxNi00IDE1djVsNS0xIDE2LTkgMTEtOSA4LTcgMTEtOSAyMS0yMSAxLTMtNC00em0tMjQ2IDEyLTEzIDktMjIgMTQtOSA4LTUgNy0xIDcgNCAzaDdsMTUtNSAxNi05IDEwLTggOS0xMSAyLTUtMS01LTUtNHoiIGZpbGw9IiMwMjAyMDIiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTU3MywxNykiIGQ9Im0wIDAgNCA0LTEgNS00IDgtOSAxMC04IDktOSAxNC04IDEwLTggMTItMTIgMTYtMTQgMjAtMTAgMTUtOCAxMy0xMCAyNS0xIDMgNC0xIDEyLTkgMTktMTMgNS00IDE0LTkgOS02IDktMiA5IDEgNSA0LTEgNi0xMSAyNS0yIDkgMSAyIDUtMSAxNC03IDE1LTEwIDgtNyA4LTEwIDEtMTAgNS02IDQtMSAzIDMgMSA3LTMgNi02IDgtMTAgMTEtOCAxMi0zIDEwIDEzLTQgMTYtNyAyMC0xMSAxMC02IDE1LTEwIDIxLTEwIDQgMSAzIDItMSA0LTEyIDIxLTQgOXYzbDMgMWgxMmwyNS00IDEwLTE1IDktMTMgNy0xMSAzLTMtMi0zdi02bDUtNiAyLTFoOGwyIDYtNCA4LTUgNS04IDExLTggMTMgMy0yIDE2LTEyIDE2LTExIDE4LTExIDI0LTExIDE0LTMgNyAxIDMgM3Y5bC0zIDVoLTdsLTEtMXYtOWwtMTYgNC0xMSA0LTE4IDEwLTEzIDktMTMgMTAtMTEgMTEtOCA3LTEwIDEwLTYgMTAtNiA0LTQtMS0yLTIgMi0xMCAyLTQtMTkgNS0xMiAyaC0xMmwtMi0zIDEtNyA4LTE2IDQtOS0xNiA3LTE2IDktMTMgOC0xNCA4LTEwIDYtOSAzLTEyLTEtNS0zIDEtOSA0LTh2LTFsLTE1IDExLTE0IDhoLTEybC0yLTN2LTE0aDJsMi01IDktMjR2LTRsLTkgNC0yNSAxNC0xNCAxMS0xMyAxMS0xMiA3LTEyIDMtMi0yIDEtOSA2LTEzIDUtMTMgMjAtMzAgMTMtMTkgMTItMTYgNy0xMSAxMC0xNiA2LTEwIDExLTE2IDQtOCA4LTcgNS01eiIgZmlsbD0iIzAyMDIwMiIvPgo8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNDQ3LDE4KSIgZD0ibTAgMGgxNmwxMiAyIDEwIDUgNCA1IDMgMTB2NWwtMyAyLTMgOS01IDVoLTZsLTQtNSAyLTcgNC00IDEtM3YtN2wtMy01LTYtM2gtMTFsLTQtMWgtMTdsLTQxIDctMTIgMy0xMyAyLTI2IDExLTE3IDgtNDYgMjYtMTEgOC0xMyAxMC0xNSAxMy0xMiAxMS0xMSAxMi0xMyAxNy0xMSAxNS03IDE0LTMgOS0xIDE0IDIgOSA2IDkgNSA0djJoNmw0IDQgNSAyIDEgMSAxMSAyIDEwIDIgMTggMWgxOGwyMi0yaDlsMzItNyAyNy03IDQtMiAxNi00IDM2LTEyIDMwLTExIDEzLTUgMiA0LTIxIDktOCA0LTE2IDctMjIgOC0xOSA2LTM0IDktMTEgMy0zIDItMTQgMS0xNSAzLTE5IDItMzUgNS0zMC04aC0xM2wtNi00LTctOC05LTE3LTEtNC0xLTI0IDUtMTMgMTAtMjAgOS0xMiA3LTcgOC0xMCAyMS0yMSAxNC0xMSAxMC04IDE3LTEyIDE2LTEwIDEwLTcgMTQtNiAxNy04IDctMyAxOC03IDM4LTEyIDIyLTN6IiBmaWxsPSIjMDIwMjAyIi8+CjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU0MSwxMTkpIiBkPSJtMCAwaDhsNSAyIDMgM3Y3bC00IDgtMTAgNi0yOCAxNi0xMSA1LTEwIDItNS0xLTEtMyA0LTYgOS0xIDctMSAxNi03IDE0LTkgOC03IDEtNi0zLTItOSAyLTE5IDktMTIgOC0xMCA5LTggOC03IDEwLTIgNXY4bDggMyA5LTEgMTUtNCAxNi02IDI2LTEwIDM0LTE2IDgtNWgybDItNSAzLTYgOC0xMCA2LTRoNWwxIDUtNiA5LTggNy0yIDQtNSAyLTIgNC03IDE1IDEgMyA5LTEgMjgtMTMgMzItMTcgMTYtOCAyMi05aDExbDUgNS0xIDctNCAxMC00IDUtMiA2LTUgNS0xMiAxOS0yNiAzNi02IDctMTAgMTQtNSA1LTEwIDExLTEzIDE4LTggMTMtMTUgMzAtNCAxMy00IDEydjI0bC0yIDMtNi0ydi0xN2w0LTE4IDQtMTEgNi0xNiAxMi0yMiAxNS0yMiAxNC0xOSAxMS0xMyA2LTggMTItMTUgMjItMzMgNy0xMSA5LTE0LTEtMTItMTAgMS0yMCA5LTM0IDE4LTE4IDEwLTE5IDZoLTlsLTMtNHYtOGw0LTktMjMgMTItMjggMTMtMTkgOC0xNiA1LTE4IDRoLTdsLTYtMy00LTV2LTE1bDgtMTUgNy02IDgtNyA4LTYgMTgtMTIgOC00IDktM3oiIGZpbGw9IiMwMjAyMDIiLz4KPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjAxOCwxOCkiIGQ9Im0wIDAgNSAxIDEgMS0xIDctMyA2LTkgMTEtNSA0LTEwIDE1LTEyIDE2LTcgMTEtMTEgMTQtNyAxMC0yNCAzNi00IDktOCAyMC0xIDMgNy00IDgtNiAxOS0xMyA4LTYgMTEtNyA4LTYgMTItMyA4IDEgNSA0LTEgNy0xMCAyMy0yIDZ2NWwzIDEgMTYtOCAxOC0xMiA3LTUgNCAxdjJsLTEyIDktMTcgMTMtMTIgNy00IDJoLTEybC0yLTN2LTEzbDUtNyA4LTIydi01bC0xNiA4LTE5IDExLTE2IDEzLTE0IDExLTEwIDUtMTAgMi0yLTMgMi05IDUtMTEgMi02IDMtOC0xMiA2LTI0IDktNTggMjEtNCAxaC0xMmwtOC00LTEtMnYtOWw0LTggMTAtMTEgMTktMTMgMjAtMTIgMTctOSA1LTMgNS0yIDEwLTEgNCA0IDEgNi01IDQtNS0xLTMtMS0xIDMtNi0xLTE4IDgtMTYgOC0xNCAxMC0xMiAxMS03IDgtMSA0IDIgMmg3bDIwLTQgMjEtOCA0MS0xMyAyMy0xMCA2LTQgNy0xMSAxNS0yMiAxMy0xOCAxMC0xNSAxMC0xNiA2LTEwIDEyLTE3IDItNiA4LTd6IiBmaWxsPSIjMDIwMjAyIi8+Cjwvc3ZnPgo="
+           alt="Beyond Church">
+      <p class="footer-tagline">Preaching Jesus.<br>Everyone. Everywhere. Everyday.</p>
+      <p class="footer-address">4510 Hwy 71 N<br>Alma, AR 72921<br>479-632-2340</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Connect</div>
+      <ul>
+        <li><a href="/i-m-new">I'm New</a></li>
+        <li><a href="/starting-point">Starting Point</a></li>
+        <li><a href="http://groups.beyondchurch.org">Small Groups</a></li>
+        <li><a href="/upcoming-events">Upcoming Events</a></li>
+        <li><a href="/beyond-kids">Beyond Kids</a></li>
+        <li><a href="/beyond-youth">Beyond Youth</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">About</div>
+      <ul>
+        <li><a href="/purpose">Our Purpose</a></li>
+        <li><a href="/leadership">Leadership</a></li>
+        <li><a href="/what-we-believe">What We Believe</a></li>
+        <li><a href="/the-hill">The Hill</a></li>
+        <li><a href="https://www.youtube.com/c/BeyondChurch">Watch</a></li>
+        <li><a href="https://donate.overflow.co/beyondchurch">Give</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2025 Beyond Church &middot; Alma, Arkansas</span>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/beyondchurch" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/beyondchurch" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.youtube.com/c/BeyondChurch" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.tiktok.com/@beyondchurch_" target="_blank" rel="noopener">TikTok</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  /* NAV scroll */
+  var nav = document.getElementById('main-nav');
+  var onScroll = function() {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* PURPOSE — IntersectionObserver word illumination + photo drop */
+  var words = document.querySelectorAll('.purpose-word');
+  var photos = document.querySelectorAll('.purpose-photo');
+  var section = document.getElementById('purpose-section');
+
+  if ('IntersectionObserver' in window) {
+    /* Trigger photos when section enters view */
+    var photoObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          photos.forEach(function(p) { p.classList.add('visible'); });
+        }
+      });
+    }, { threshold: 0.2 });
+    if (section) photoObs.observe(section);
+
+    /* Trigger word groups on scroll using scroll listener */
+    var purpose = document.getElementById('purpose-statement');
+    var scrollHandler = function() {
+      if (!purpose) return;
+      var rect = purpose.getBoundingClientRect();
+      var vh = window.innerHeight;
+      var progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.8)));
+      var totalGroups = 5;
+      var litGroup = Math.floor(progress * totalGroups);
+      words.forEach(function(w) {
+        var g = parseInt(w.getAttribute('data-group'), 10);
+        if (g <= litGroup) {
+          w.classList.add('lit');
+        }
+      });
+    };
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    scrollHandler();
+  } else {
+    /* Fallback: show everything */
+    words.forEach(function(w) { w.classList.add('lit'); });
+    photos.forEach(function(p) { p.classList.add('visible'); });
+  }
+})();
+</script>
+
+</body>
+</html>
