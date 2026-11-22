@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "title": "Beyond Church Bible Reading Plan 2026",
+    "description": "A year-long reading plan for the Beyond Church family.",
+    "year": 2026,
+    "updated": "2026-11-21",
+    "note": "Days are numbered 1–365. Add passages for each day. The app tracks completion locally per user."
+  },
+  "days": [
+    { "day": 1, "date": "2026-01-01", "passages": ["Genesis 1-2", "Psalm 1"] },
+    { "day": 2, "date": "2026-01-02", "passages": ["Genesis 3-4", "Psalm 2"] },
+    { "day": 325, "date": "2026-11-21", "passages": ["Matthew 6:1-18", "Isaiah 40:28-31"] },
+    { "day": 326, "date": "2026-11-22", "passages": ["Matthew 6:19-34", "Psalm 46"] },
+    { "day": 327, "date": "2026-11-23", "passages": ["Matthew 7:1-14"] },
+    { "day": 328, "date": "2026-11-24", "passages": ["Matthew 7:15-29", "Psalm 100"] }
+  ]
+}

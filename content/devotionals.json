@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "updated": "2026-11-21",
+    "note": "Add new entries at the top. Date format: YYYY-MM-DD. Scripture version defaults to NLT."
+  },
+  "entries": [
+    {
+      "id": "2026-11-21",
+      "date": "2026-11-21",
+      "title": "A Place to Land",
+      "scripture": "Psalm 23:1-3",
+      "scriptureVersion": "NLT",
+      "scriptureText": "The Lord is my shepherd; I have all that I need. He lets me rest in green meadows; he leads me beside peaceful streams. He renews my strength. He guides me along right paths, bringing honor to his name.",
+      "body": "David didn't write this psalm from a palace. He wrote it from memory — the memory of what it felt like to be small, exposed, and dependent on something bigger than himself. The image of a shepherd wasn't a metaphor for comfort alone. It was a metaphor for trust earned over time.\n\nWhat does it look like for you to trust that there's enough — enough grace, enough direction, enough strength — for today?",
+      "author": "Landon Parker"
+    },
+    {
+      "id": "2026-11-20",
+      "date": "2026-11-20",
+      "title": "Placeholder — Nov 20",
+      "scripture": "Proverbs 3:5-6",
+      "scriptureVersion": "NLT",
+      "scriptureText": "Trust in the Lord with all your heart; do not depend on your own understanding. Seek his will in all you do, and he will show you which path to take.",
+      "body": "Add today's devotional content here.",
+      "author": ""
+    }
+  ]
+}
